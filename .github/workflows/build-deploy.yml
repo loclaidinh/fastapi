@@ -36,8 +36,6 @@ jobs:
     steps:
       - name: pulling git repo
         uses: actions/checkout@v3
-      - name: say hello
-        run: echo "Hello World!"
       - name: setup python 3.10
         uses: actions/setup-python@v4
         with:

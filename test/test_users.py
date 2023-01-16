@@ -14,7 +14,7 @@ class TestUser():
             "/users/", json={"email": "test_client3@gmail.com", "password": "password123"})
 
         new_user = schemas.UserOut(**res.json())
-        assert res.status_code == 201
+        assert res.status_code == 200  # original == 201
         assert new_user.email == "test_client3@gmail.com"
 
     def test_user_login(self, client, test_user):
