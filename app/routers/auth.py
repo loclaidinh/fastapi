@@ -13,13 +13,13 @@ def user_login(user_cretidentials: OAuth2PasswordRequestForm = Depends(), db: Se
     user = db.query(models.User).filter(
         models.User.email == user_cretidentials.username).first()
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="Invalid cretidentials!")
 
     hashed_password = user.password
 
     if not utils.verify_password(user_cretidentials.password, hashed_password):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="Invalid cretidentials!")
 
     encode_jwt = oauth2.create_access_token({"user_id": user.id})

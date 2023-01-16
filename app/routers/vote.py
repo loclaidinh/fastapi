@@ -38,4 +38,4 @@ def vote(vote: schemas.Vote, db: Session = Depends(get_db), current_user=Depends
                 return {"message": "voted successfully"}
             else:
                 raise HTTPException(
-                    status_code=status.HTTP_409_CONFLICT, detail="no vote found to unvote!")
+                    status_code=status.HTTP_404_NOT_FOUND, detail="no vote found to unvote!")

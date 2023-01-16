@@ -22,9 +22,9 @@ def get_posts(db: Session = Depends(get_db), current_user=Depends(oauth2.get_cur
 
     posts = db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(
         models.Vote, models.Vote.post_id == models.Post.id, isouter=True).group_by(models.Post.id).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all()
-    if not posts:
-        raise HTTPException(
-            status_code=status.HTTP_204_NO_CONTENT, detail="There is no post")
+    # if not posts:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_204_NO_CONTENT, detail="There is no post")
     return posts
 
 

@@ -10,6 +10,7 @@ from .routers import post, user, auth, vote
 origins = ["https://www.bing.com"]
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
